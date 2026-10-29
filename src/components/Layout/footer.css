@@ -1,0 +1,14 @@
+.footer {
+  padding: var(--space-5) var(--space-4);
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+}
+.footer__texto { font-size: var(--fs-xs); color: var(--color-text-muted); }
+
+/* En móvil la barra inferior es fija: dejar espacio para que no tape el footer */
+@media (max-width: 999px) {
+  .footer {
+    padding-bottom: calc(var(--bottom-nav-h) + var(--space-4) + env(safe-area-inset-bottom, 0px));
+  }
+}

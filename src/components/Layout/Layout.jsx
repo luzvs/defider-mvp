@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import Navbar from './Navbar.jsx'
+import Footer from './Footer.jsx'
 import BottomNav from './BottomNav.jsx'
 
 export default function Layout() {
@@ -14,6 +15,7 @@ export default function Layout() {
       <main id="contenido" className="main container">
         <Outlet />
       </main>
+      <Footer />
       <BottomNav />
     </>
   )

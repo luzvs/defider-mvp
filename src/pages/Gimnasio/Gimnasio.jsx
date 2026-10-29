@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { PageHeader, Icon } from '../../components/ui/index.js'
-import './gimnasio.css'
+import './Gimnasio.css'
 
 /* ---------- Datos del horario ----------
    Transcritos de las capturas del prototipo (Entrega 2). Revisar nombres de instructores. */
