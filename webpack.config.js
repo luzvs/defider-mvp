@@ -13,7 +13,11 @@ module.exports = (_, argv) => ({
       filename: '[name].[contenthash].css'
     }),
     new HtmlWebpackPlugin({
-      title: 'Interfaz energética'
+      // CAMBIO A: título y viewport del HTML
+      title: 'DEFIDER USM',
+      meta: {
+        viewport: 'width=device-width, initial-scale=1, viewport-fit=cover'
+      }
     })
   ],
   resolve: {
@@ -26,7 +30,8 @@ module.exports = (_, argv) => ({
         loader: 'babel-loader',
         options: {
           presets: [
-            '@babel/preset-react'
+            // CAMBIO B: no exigir "import React" en cada archivo
+            ['@babel/preset-react', { runtime: 'automatic' }]
           ]
         }
       },

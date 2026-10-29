@@ -1,10 +1,15 @@
-import React from 'react'
-import { createRoot } from 'react-dom/client';
+import { createRoot } from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
 
-import Layout from './components/layout'
+import './styles/tokens.css'
+import './styles/base.css'
+import App from './App.jsx'
 
-import './stylesheets/index.scss'
+document.documentElement.lang = 'es'
+document.body.innerHTML = '<div id="root"></div>'
 
-document.body.innerHTML = '<div id="root"></div>';
-const root = createRoot(document.getElementById('root'));
-root.render(<Layout />);
+createRoot(document.getElementById('root')).render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+)
