@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { PageHeader, Icon } from '../../components/ui/index.js'
+import { useReservations } from '../../services/reservationsStore.js'
 import './Canchas.css'
 
 /* ---------- Datos ---------- */
@@ -147,8 +148,7 @@ function Confirmacion({ seleccion, onConfirmar, onCerrar }) {
 }
 
 export default function Canchas() {
-  const [reservas, setReservas] = useState([])
-  const agregarReserva = (r) => setReservas((prev) => [...prev, { ...r, id: `${Date.now()}-${prev.length}` }])
+  const { reservations: reservas, addReservations: agregarReservas } = useReservations()
   const [semana, setSemana] = useState(0)
   const [mesSeleccionado, setMesSeleccionado] = useState(0)
   const [recinto, setRecinto] = useState('multicancha7x7')
@@ -190,7 +190,7 @@ export default function Canchas() {
       }
     })
 
-    nuevasReservas.forEach((r) => agregarReserva(r))
+    agregarReservas(nuevasReservas)
     setBloquesSeleccionados([])
     setAviso({
       texto: `${nuevasReservas.length} reserva(s) confirmada(s).`,
