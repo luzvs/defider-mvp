@@ -1,0 +1,184 @@
+
+.equipment-paso {
+  margin-top: var(--space-6);
+}
+
+.equipment-paso h2 {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  margin-bottom: var(--space-3);
+}
+
+.equipment-num {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--color-primary-600);
+  color: #fff;
+  font-size: var(--fs-sm);
+}
+
+.equipment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: var(--space-3);
+}
+
+.equipment-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.equipment-card span {
+  font-size: var(--fs-sm);
+}
+
+.equipment-card:hover:not(:disabled) {
+  border-color: var(--color-primary-600);
+}
+
+.equipment-card.is-active {
+  background: var(--color-primary-800);
+  border-color: var(--color-primary-800);
+  color: #fff;
+}
+
+.equipment-card:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.equipment-select,
+.equipment-cantidad {
+  padding: var(--space-3);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: inherit;
+  font: inherit;
+}
+
+.equipment-select {
+  width: 100%;
+  max-width: 350px;
+}
+
+.equipment-cantidad {
+  width: 110px;
+  margin-top: var(--space-3);
+}
+
+.equipment-acciones {
+  display: flex;
+  justify-content: flex-end;
+  margin: var(--space-6) 0;
+}
+
+.equipment-reservar {
+  padding: var(--space-3) var(--space-5);
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: var(--color-primary-800);
+  color: #fff;
+  font: inherit;
+  font-weight: var(--fw-bold);
+  cursor: pointer;
+}
+
+.equipment-reservar:hover:not(:disabled) {
+  background: var(--color-primary-700);
+}
+
+.equipment-reservar:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.equipment-aviso {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+  margin-top: var(--space-4);
+  padding: var(--space-4);
+  border: 1px solid var(--color-primary-600);
+  border-radius: var(--radius-lg);
+  background: var(--color-primary-50);
+}
+
+.equipment-aviso a {
+  color: var(--color-primary-700);
+  font-weight: var(--fw-semibold);
+}
+
+.equipment-aviso button {
+  padding: var(--space-2);
+  cursor: pointer;
+}
+
+.equipment-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: var(--space-4);
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.equipment-modal-card {
+  width: 100%;
+  max-width: 440px;
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-md);
+}
+
+.equipment-modal-card h2 {
+  margin-bottom: var(--space-4);
+  font-size: var(--fs-lg);
+}
+
+.equipment-modal-card p {
+  margin-top: var(--space-2);
+}
+
+.equipment-modal-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.equipment-modal-acciones button {
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .equipment-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .equipment-acciones .equipment-reservar {
+    width: 100%;
+  }
+}
