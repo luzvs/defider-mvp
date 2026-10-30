@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { PageHeader, Icon } from '../../components/ui/index.js'
+import { useReservations } from '../../services/reservationsStore.js'
 import './Gimnasio.css'
 
 /* ---------- Datos del horario ----------
@@ -121,10 +122,7 @@ function Confirmacion({ seleccion, onConfirmar, onCerrar }) {
 }
 
 export default function Gimnasio() {
-  // Solo visual: las reservas viven en esta pantalla (se pierden al cambiar de página).
-  const [reservas, setReservas] = useState([])
-  const agregarReserva = (r) => setReservas((prev) => [...prev, { ...r, id: `${Date.now()}-${prev.length}` }])
-  const cancelarReserva = (id) => setReservas((prev) => prev.filter((r) => r.id !== id))
+  const { reservations: reservas, addReservation: agregarReserva, cancelReservation: cancelarReserva } = useReservations()
   const [semana, setSemana] = useState(0)
   const [sala, setSala] = useState('maquinas')
   const [seleccion, setSeleccion] = useState(null)
