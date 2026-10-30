@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { PageHeader, Button } from '../../components/ui/index.js'
+import { useReservations } from '../../services/reservationsStore.js'
 import './perfil.css'
 
 const MAX_POR_SALA = 2
@@ -19,16 +20,22 @@ const DATOS_INICIALES = {
   correo: 'estudiante@usm.cl',
 }
 
-// Provisorio: cuando las reservas vivan en un estado compartido, reemplazar por los datos reales.
-const USO_SEMANAS = [
-  { semana: 1, maquinas: 0, multiuso: 0 },
-  { semana: 2, maquinas: 0, multiuso: 0 },
-]
-const RESERVAS_ACTIVAS = 0
-
 export default function Perfil() {
   const [datos, setDatos] = useState(DATOS_INICIALES)
   const [guardado, setGuardado] = useState(false)
+  const { reservations } = useReservations()
+
+  const usoSemanas = [0, 1].map((semana) => {
+    const reservasGym = reservations.filter(
+      (reservation) => reservation.tipo === 'Gimnasio' && Number(reservation.semana) === semana,
+    )
+
+    return {
+      semana: semana + 1,
+      maquinas: reservasGym.filter((reservation) => reservation.sala === 'maquinas').length,
+      multiuso: reservasGym.filter((reservation) => reservation.sala === 'multiuso').length,
+    }
+  })
 
   const alCambiar = (e) => {
     setDatos((prev) => ({ ...prev, [e.target.name]: e.target.value }))
@@ -69,7 +76,7 @@ export default function Perfil() {
         <aside className="perfil__lateral">
           <section className="perfil__uso" aria-labelledby="perfil-uso">
             <h2 id="perfil-uso" className="perfil__uso-titulo">Uso del gimnasio</h2>
-            {USO_SEMANAS.map(({ semana, maquinas, multiuso }) => (
+            {usoSemanas.map(({ semana, maquinas, multiuso }) => (
               <div key={semana} className="perfil__semana">
                 <p className="perfil__semana-nombre">Semana {semana}</p>
                 <p>Sala de Máquinas: {maquinas}/{MAX_POR_SALA} horas</p>
@@ -80,7 +87,7 @@ export default function Perfil() {
           </section>
 
           <p className="perfil__activas">
-            Reservas activas: <strong>{RESERVAS_ACTIVAS}</strong>
+            Reservas activas: <strong>{reservations.length}</strong>
           </p>
         </aside>
       </div>
