@@ -1,63 +1,112 @@
-import React, { useState } from 'react';
-import { PageHeader } from '../../components/ui/index.js';
+import { PageHeader } from '../../components/ui/index.js'
+import './Talleres.css'
 
 export default function Talleres() {
-  const [mensaje, setMensaje] = useState("");
-
   const talleres = [
-    { id: 1, nombre: "Yoga Funcional", horario: "Lunes y Miércoles 10:00 - 11:30", cupos: 5 },
-    { id: 2, nombre: "CrossFit Universitario", horario: "Martes y Jueves 17:00 - 18:30", cupos: 2 },
-    { id: 3, nombre: "Spinning", horario: "Viernes 15:00 - 16:00", cupos: 0 }
-  ];
-
-  const handleReserva = (nombre, cupos) => {
-    if (cupos > 0) {
-      setMensaje(`¡Inscripción confirmada para el taller de ${nombre}! Revisa tu correo institucional.`);
-    } else {
-      setMensaje(`Lo sentimos, no hay cupos para ${nombre}.`);
-    }
-  };
+    {
+      nombre: 'Ajedrez',
+      instructor: 'Raúl Molina Muñoz',
+      lugar: 'Sala de Estar',
+      horarios: ['Jueves 12:30 - 13:40'],
+    },
+    {
+      nombre: 'Básquetbol',
+      instructor: 'Antonio López Pérez',
+      lugar: 'Cancha 5x5',
+      horarios: ['Viernes 14:40 - 15:50'],
+    },
+    {
+      nombre: 'Futsal',
+      instructor: 'Pablo Fernández Troncoso',
+      lugar: 'Cancha 7x7',
+      horarios: ['Lunes 17:30 - 18:40', 'Jueves 17:30 - 18:40'],
+    },
+    {
+      nombre: 'Judo',
+      instructor: 'Gaston Vergara Verdejo',
+      lugar: 'Sala Multiuso Gimnasio 3',
+      horarios: ['Lunes 18:50 - 20:00', 'Miércoles 18:50 - 20:00', 'Miércoles 20:15 - 21:25'],
+    },
+    {
+      nombre: 'Gimnasia Artística',
+      instructor: 'Bruce Gallardo',
+      lugar: 'Gimnasio 1',
+      horarios: ['Martes 12:30 - 13:40', 'Jueves 12:30 - 13:40'],
+    },
+    {
+      nombre: 'Karate',
+      instructor: 'Germán Oliveros Santos',
+      lugar: 'Sala Multiuso Gimnasio 3',
+      horarios: ['Martes 12:30 - 13:40'],
+    },
+    {
+      nombre: 'Vóleibol',
+      instructor: 'Jorge Botau Mancilla',
+      lugar: 'Gimnasio 2',
+      horarios: ['Martes 12:30 - 13:40'],
+    },
+    {
+      nombre: 'Ultimate Frisbee',
+      instructor: 'Antonio López Pérez',
+      lugar: 'Estadio USM',
+      horarios: ['Viernes 14:40 - 15:50'],
+    },
+    {
+      nombre: 'Squash',
+      instructor: 'Equipo DEFIDER',
+      lugar: 'Cancha Squash',
+      horarios: ['Lunes 17:30 - 18:40', 'Miércoles 17:30 - 18:40'],
+    },
+    {
+      nombre: 'Tenis',
+      instructor: 'Enrique Cabello Contreras',
+      lugar: 'Cancha Tenis',
+      horarios: ['Jueves 11:05 - 11:15'],
+    },
+    {
+      nombre: 'Taekwondo',
+      instructor: 'Sebastián Aguilar Garrido',
+      lugar: 'Gimnasio 2',
+      horarios: ['Martes 18:50 - 20:00', 'Viernes 17:30 - 18:40'],
+    },
+  ]
 
   return (
-    <div>
-      <PageHeader title="Talleres" description="Inscripción a talleres deportivos." />
-      
-      <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-        {mensaje && (
-          <div style={{ padding: '10px', backgroundColor: '#d4edda', color: '#155724', marginBottom: '15px', borderRadius: '5px', border: '1px solid #c3e6cb' }}>
-            {mensaje}
-          </div>
-        )}
+    <>
+      <PageHeader
+        title="Talleres"
+        description="Los talleres no requieren reserva. Solo asiste al recinto en el horario indicado."
+      />
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-          {talleres.map(taller => (
-            <div key={taller.id} style={{ border: '1px solid #ccc', padding: '15px', borderRadius: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div>
-                <h3 style={{ margin: '0 0 10px 0' }}>{taller.nombre}</h3>
-                <p style={{ margin: '0 0 5px 0' }}><strong>Horario:</strong> {taller.horario}</p>
-                <p style={{ margin: 0, color: taller.cupos > 0 ? '#28a745' : '#dc3545', fontWeight: 'bold' }}>
-                  {taller.cupos > 0 ? `${taller.cupos} cupos disponibles` : 'Sin cupos'}
-                </p>
-              </div>
-              <button 
-                onClick={() => handleReserva(taller.nombre, taller.cupos)}
-                disabled={taller.cupos === 0}
-                style={{ 
-                  padding: '10px 20px', 
-                  backgroundColor: taller.cupos > 0 ? '#007bff' : '#6c757d', 
-                  color: 'white', 
-                  border: 'none', 
-                  borderRadius: '5px', 
-                  cursor: taller.cupos > 0 ? 'pointer' : 'not-allowed',
-                  fontWeight: 'bold'
-                }}
-              >
-                {taller.cupos > 0 ? 'Inscribirse' : 'Agotado'}
-              </button>
+      <section className="talleres-grid" aria-label="Lista de talleres">
+        {talleres.map((taller) => (
+          <article className="taller-card" key={taller.nombre}>
+            <h2 className="taller-card__nombre">{taller.nombre}</h2>
+            <p className="taller-card__recinto">Casa Central</p>
+            <div className="taller-card__datos">
+              <p>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4" /><path d="M4 21c0-4 4-6 8-6s8 2 8 6" /></svg>
+                <span>{taller.instructor}</span>
+              </p>
+              <p>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.5" /></svg>
+                <span>{taller.lugar}</span>
+              </p>
+              <p>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3.5 2" /></svg>
+                <span>
+                  {taller.horarios.map((horario, index) => (
+                    <span className="taller-card__horario" key={horario}>
+                      {index > 0 && <br />}
+                      {horario}
+                    </span>
+                  ))}
+                </span>
+              </p>
             </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
+          </article>
+        ))}
+      </section>
+    </>
+  )
 }

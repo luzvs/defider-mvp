@@ -1,0 +1,78 @@
+.talleres-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.taller-card {
+  min-height: 128px;
+  padding: var(--space-4) var(--space-4) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.taller-card__nombre {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-bold);
+  line-height: 1.25;
+}
+
+.taller-card__recinto {
+  margin-top: var(--space-1);
+  color: var(--color-primary-600);
+  font-size: 0.625rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.045em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.taller-card__datos {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: var(--space-2);
+  color: var(--color-text-muted);
+  font-size: var(--fs-xs);
+  line-height: 1.35;
+}
+
+.taller-card__datos p {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.taller-card__datos svg {
+  width: 14px;
+  height: 14px;
+  margin-top: 1px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.taller-card__horario {
+  display: inline;
+}
+
+@media (max-width: 767px) {
+  .talleres-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 479px) {
+  .talleres-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .taller-card {
+    min-height: 0;
+  }
+}
