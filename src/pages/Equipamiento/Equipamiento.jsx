@@ -1,4 +1,3 @@
-
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { PageHeader } from '../../components/ui/index.js'
@@ -131,7 +130,7 @@ export default function Equipamiento() {
     <div className="equipment">
       <PageHeader
         title="Reserva de equipamiento"
-        description="Selecciona el material deportivo, día, horario y cantidad que necesitas."
+        description="Elige día, equipamiento, bloque horario y cantidad, luego presiona Reservar."
       />
 
       {aviso && (
@@ -147,29 +146,7 @@ export default function Equipamiento() {
       <section className="equipment-paso">
         <h2>
           <span className="equipment-num">1</span>
-          Selecciona el equipamiento
-        </h2>
-
-        <div className="equipment-grid">
-          {MATERIALES.map(m => (
-            <button
-              key={m.id}
-              type="button"
-              className={`equipment-card ${materialId === m.id ? 'is-active' : ''}`}
-              onClick={() => seleccionarMaterial(m.id)}
-              aria-pressed={materialId === m.id}
-            >
-              <strong>{m.nombre}</strong>
-              <span>Stock total: {m.stock}</span>
-            </button>
-          ))}
-        </div>
-      </section>
-
-      <section className="equipment-paso">
-        <h2>
-          <span className="equipment-num">2</span>
-          Selecciona el día
+          Elige el día
         </h2>
 
         <select
@@ -191,8 +168,30 @@ export default function Equipamiento() {
 
       <section className="equipment-paso">
         <h2>
+          <span className="equipment-num">2</span>
+          Elige el equipamiento
+        </h2>
+
+        <div className="equipment-grid">
+          {MATERIALES.map(m => (
+            <button
+              key={m.id}
+              type="button"
+              className={`equipment-card ${materialId === m.id ? 'is-active' : ''}`}
+              onClick={() => seleccionarMaterial(m.id)}
+              aria-pressed={materialId === m.id}
+            >
+              <strong>{m.nombre}</strong>
+              <span>Stock total: {m.stock}</span>
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <section className="equipment-paso">
+        <h2>
           <span className="equipment-num">3</span>
-          Selecciona un bloque horario
+          Elige el bloque horario
         </h2>
 
         <div className="equipment-grid">
@@ -222,13 +221,13 @@ export default function Equipamiento() {
       <section className="equipment-paso">
         <h2>
           <span className="equipment-num">4</span>
-          Selecciona la cantidad
+          Elige la cantidad
         </h2>
 
         <p>
           {bloque
             ? `Unidades disponibles: ${disponibles}`
-            : 'Selecciona primero un horario.'}
+            : 'Elige primero un bloque horario.'}
         </p>
 
         <input
